@@ -18,7 +18,7 @@ const Header = () => {
    
     { href: "/contact", text: "Contact" },
     { href: "/locations", text: "Locations" },
-    { href: "/careers", text: "Careers" },
+    
   ];
 
   const linkClasses =
@@ -31,7 +31,7 @@ const Header = () => {
         <Link href="/" className="block flex-shrink-0">
           <div className="w-28 h-14 md:w-40 md:h-20 bg-white rounded-full overflow-hidden flex items-center justify-center">
             <Image
-              src="/logo.jpg"
+              src="/Logo.jpg"
               alt="TABQ Logo"
               width={160}
               height={80}
