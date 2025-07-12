@@ -43,7 +43,7 @@ const AboutUs = () => {
         {/* Image */}
         <div className="w-full h-[300px] md:h-[450px] relative rounded-xl overflow-hidden shadow-xl">
           <Image
-            src="/images/Logo.jpg"
+            src="/images/logo.jpg"
 
             alt="About Tabaq"
             fill
