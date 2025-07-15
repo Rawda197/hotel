@@ -73,3 +73,9 @@ body {
 .animate-fade-in-up {
   animation: fade-in-up 0.6s ease-out;
 }
+
+@import "@fontsource/cairo/400.css";
+
+body {
+  font-family: 'Cairo', sans-serif;
+}

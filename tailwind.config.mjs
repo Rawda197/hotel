@@ -8,11 +8,12 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-  extend: {
-    colors: {
-      gold: '#D4AF37',
+    extend: {
+      colors: {
+        primary: '#003366', // أزرق غامق
+        secondary: '#ffffff', // أبيض
+      },
     },
   },
-},
 
 };

@@ -1,54 +1,61 @@
+// components/HeroSection.jsx
 "use client";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, EffectFade } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/effect-fade";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
-const heroImages = Array.from({ length: 51 }, (_, i) => `/images/${i + 1}.jpg`);
+const phrases = [
+  "مرحبًا بك في منتجع بلو بريز الغردقة",
+  "استمتع بتجربة فندقية فاخرة",
+  "راحة، هدوء، وضيافة لا تُنسى",
+];
 
 const HeroSection = () => {
-  return (
-    <section className="relative w-full h-[100vh] sm:h-[90vh] md:h-[100vh] overflow-hidden text-white">
-      <Swiper
-        modules={[Autoplay, Pagination, EffectFade]}
-        effect="fade"
-        loop
-        autoplay={{ delay: 3000 }}
-        className="h-full"
-      >
-        {heroImages.map((src, index) => (
-          <SwiperSlide key={index}>
-            <div className="relative w-full h-[100vh] sm:h-[90vh] md:h-[100vh]">
-              <Image
-                src={src}
-                alt={`Restaurant view ${index + 1}`}
-                fill
-                className="object-cover brightness-[0.4]"
-                priority={index === 0}
-              />
+  const [text, setText] = useState("");
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [reverse, setReverse] = useState(false);
 
-              {/* النص في منتصف الشاشة */}
-              <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 sm:px-6 md:px-12">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gold mb-4 leading-tight">
-                  Discover Authentic Flavors
-                </h1>
-                <p className="text-sm sm:text-base md:text-lg text-gray-200 max-w-2xl mb-6 leading-relaxed">
-                  Enjoy traditional dishes from Egypt, Levant, Iraq, Gulf & Morocco with a luxurious black and gold atmosphere.
-                </p>
-                <Link
-                  href="/reservation"
-                  className="mt-4 bg-gold text-black font-semibold px-5 py-3 rounded-xl hover:bg-yellow-400 transition duration-300"
-                >
-                  Book a Table
-                </Link>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+  // أنميشن الكتابة
+  useEffect(() => {
+    if (index >= phrases.length) return;
+
+    const timeout = setTimeout(() => {
+      setText(phrases[index].substring(0, subIndex));
+      if (!reverse) {
+        if (subIndex < phrases[index].length) {
+          setSubIndex((prev) => prev + 1);
+        } else {
+          setReverse(true);
+          setTimeout(() => setReverse(false), 2000);
+        }
+      } else {
+        if (subIndex > 0) {
+          setSubIndex((prev) => prev - 1);
+        } else {
+          setReverse(false);
+          setIndex((prev) => (prev + 1) % phrases.length);
+        }
+      }
+    }, reverse ? 40 : 100);
+    return () => clearTimeout(timeout);
+  }, [subIndex, index, reverse]);
+
+  return (
+    <section className="w-full h-screen flex flex-col justify-center items-center bg-white text-[#2E86C1] px-4 text-center">
+      {/* النص المتحرك */}
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 min-h-[80px]">
+        {text}
+        <span className="animate-pulse">|</span>
+      </h1>
+
+      {/* زر احجز الآن */}
+      <Link
+        href="/rooms"
+        className="bg-[#F4D03F] hover:bg-yellow-300 text-black font-bold px-8 py-3 rounded-full shadow-md transition"
+      >
+        احجز الآن
+      </Link>
     </section>
   );
 };

@@ -1,7 +1,6 @@
-// components/ReservationForm.jsx
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 
 const ReservationForm = () => {
   const [form, setForm] = useState({
@@ -22,6 +21,8 @@ const ReservationForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSuccess(true);
+
+    // Reset the form
     setForm({
       name: "",
       email: "",
@@ -30,27 +31,26 @@ const ReservationForm = () => {
       time: "",
       notes: "",
     });
+
+    // Hide success message after 3 seconds
     setTimeout(() => setSuccess(false), 3000);
   };
 
   return (
-    <section className="bg-[#fdf8ef] py-16 px-4 md:px-10">
+    <section className="bg-white py-16 px-4 md:px-10 text-[#2E86C1]" dir="rtl">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6 items-stretch">
         {/* النموذج */}
         <div className="flex flex-col justify-center">
-          <h2 className="text-4xl font-bold text-yellow-600 mb-4">
-            Reserve Your Table
-          </h2>
+          <h2 className="text-4xl font-bold mb-4">احجز إقامتك الآن</h2>
           <p className="text-gray-700 mb-6">
-            Book your spot at Tabaq and enjoy an unforgettable Middle Eastern
-            dining experience.
+            احجز غرفتك في منتجع <strong>بلو بريز الغردقة</strong> وتمتع بإقامة فاخرة على شاطئ البحر الأحمر.
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
               type="text"
               name="name"
-              placeholder="Your Name"
+              placeholder="الاسم الكامل"
               value={form.name}
               onChange={handleChange}
               required
@@ -59,7 +59,7 @@ const ReservationForm = () => {
             <input
               type="email"
               name="email"
-              placeholder="Your Email"
+              placeholder="البريد الإلكتروني"
               value={form.email}
               onChange={handleChange}
               required
@@ -68,7 +68,7 @@ const ReservationForm = () => {
             <input
               type="number"
               name="people"
-              placeholder="Number of Guests"
+              placeholder="عدد الأشخاص"
               value={form.people}
               onChange={handleChange}
               required
@@ -95,7 +95,7 @@ const ReservationForm = () => {
             <textarea
               name="notes"
               rows="4"
-              placeholder="Additional Notes (optional)"
+              placeholder="ملاحظات إضافية (اختياري)"
               value={form.notes}
               onChange={handleChange}
               className="w-full p-3 border border-gray-300 rounded-lg"
@@ -103,14 +103,14 @@ const ReservationForm = () => {
 
             <button
               type="submit"
-              className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-3 rounded-full transition"
+              className="bg-[#F4D03F] hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-full transition"
             >
-              Book Now
+              إرسال الحجز
             </button>
 
             {success && (
-              <div className="mt-4 text-green-600 font-semibold animate-fade-in-up">
-                ✅ Reservation submitted successfully!
+              <div className="mt-4 text-green-600 font-semibold">
+                ✅ تم إرسال الحجز بنجاح!
               </div>
             )}
           </form>
@@ -119,8 +119,8 @@ const ReservationForm = () => {
         {/* الصورة */}
         <div className="w-full h-full hidden md:block">
           <img
-            src="/images/5.jpg"
-            alt="Reservation"
+            src="/images/1.jpg"
+            alt="صورة الحجز"
             className="w-full h-full object-cover rounded-xl shadow-lg"
           />
         </div>

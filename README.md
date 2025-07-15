@@ -1,2 +1,1 @@
-"# adala" 
-"# Tabaq" 
+"# hotel" 

@@ -1,23 +1,28 @@
-import "./globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import "./globals.css";
+import { Cairo } from "next/font/google";
+
+const cairo = Cairo({
+  subsets: ["arabic"],
+  weight: ["700"], // خط بولد
+});
 
 export const metadata = {
-  title: "Tabaq - Middle Eastern Restaurant",
+  title: "بلو بريز الغردقة - منتجع سياحي",
   description:
-    "Welcome to Tabaq — a modern Middle Eastern restaurant serving traditional flavors with a contemporary twist. Enjoy fresh ingredients, handcrafted dishes, and warm hospitality.",
+    "مرحبًا بك في منتجع بلو بريز الغردقة — تجربة فندقية فاخرة على شاطئ البحر الأحمر. استمتع بالراحة، الهدوء، والضيافة الراقية في قلب الغردقة.",
 };
 
-export default function RootLayout({ children }) {
+function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="ar" dir="rtl">
       <head>
-        {/* ✅ أيقونة الموقع (favicon) بصيغة png أو ico */}
-        <link rel="jpg" href="/logo.jpg" />
-        {/* أو لو عندك png */}
-        {/* <link rel="icon" href="/favicon.png" type="image/png" /> */}
+        <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className="antialiased bg-white text-gray-900">
+      <body className={`antialiased ${cairo.className} bg-white text-gray-900 font-sans`}>
         <Header />
         <main>{children}</main>
         <Footer />
@@ -25,3 +30,5 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+export default RootLayout;

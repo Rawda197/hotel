@@ -30,7 +30,7 @@ export default function ContactSection() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const msg = `Name: ${form.name}%0AEmail: ${form.email}%0APhone: ${form.phone}%0ASubject: ${form.subject}%0AMessage: ${form.message}`;
+    const msg = `الاسم: ${form.name}%0Aالإيميل: ${form.email}%0Aالهاتف: ${form.phone}%0Aالموضوع: ${form.subject}%0Aالرسالة: ${form.message}`;
     window.open(`https://wa.me/201151432229?text=${msg}`, "_blank");
 
     setForm({
@@ -46,21 +46,26 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="bg-[#fdfaf2] py-16 px-4">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch text-left">
-        {/* ✅ Contact Form */}
+    <section className="bg-[#EAF2F8] py-16 px-4" dir="rtl">
+      {/* الجملة في منتصف الشاشة */}
+      <div className="text-center mb-12">
+        <h2 className="text-4xl font-bold text-[#2E86C1]">تواصل معنا</h2>
+      </div>
+
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch text-right">
+        {/* ✅ نموذج التواصل */}
         <form
           onSubmit={handleSubmit}
           className="bg-white rounded-2xl shadow-xl p-8 space-y-4"
         >
-          <h2 className="text-3xl font-bold text-[#d4af37] text-center mb-4">
-            Contact Us
-          </h2>
+          <h3 className="text-2xl font-bold text-[#2E86C1] text-center mb-4">
+            ارسل لنا رسالتك
+          </h3>
 
           <input
             type="text"
             name="name"
-            placeholder="Full Name"
+            placeholder="الاسم الكامل"
             value={form.name}
             onChange={handleChange}
             required
@@ -70,7 +75,7 @@ export default function ContactSection() {
           <input
             type="email"
             name="email"
-            placeholder="Email Address"
+            placeholder="البريد الإلكتروني"
             value={form.email}
             onChange={handleChange}
             required
@@ -80,7 +85,7 @@ export default function ContactSection() {
           <input
             type="tel"
             name="phone"
-            placeholder="Phone Number"
+            placeholder="رقم الهاتف"
             value={form.phone}
             onChange={handleChange}
             required
@@ -94,16 +99,15 @@ export default function ContactSection() {
             required
             className="w-full border border-gray-300 rounded-md p-3"
           >
-            <option value="">Select a subject</option>
-            <option value="Table Reservation">Table Reservation</option>
-            <option value="Private Event">Private Event</option>
-            <option value="Outdoor Catering">Outdoor Catering</option>
-            <option value="General Inquiry">General Inquiry</option>
+            <option value="">اختر الموضوع</option>
+            <option value="حجز غرفة">حجز غرفة</option>
+            <option value="استفسار عام">استفسار عام</option>
+            <option value="ملاحظات واقتراحات">ملاحظات واقتراحات</option>
           </select>
 
           <textarea
             name="message"
-            placeholder="Your message..."
+            placeholder="اكتب رسالتك هنا..."
             value={form.message}
             onChange={handleChange}
             required
@@ -112,44 +116,44 @@ export default function ContactSection() {
 
           <button
             type="submit"
-            className="bg-[#d4af37] text-white py-2 px-6 rounded-full hover:bg-yellow-500 transition"
+            className="bg-[#F4D03F] text-black py-2 px-6 rounded-full hover:bg-yellow-400 transition font-bold"
           >
-            Send Message
+            إرسال الرسالة
           </button>
 
           {sent && (
-            <div className="text-[#d4af37] animate-bounce text-sm font-medium text-center">
-              ✅ Message sent successfully!
+            <div className="text-[#2E86C1] animate-bounce text-sm font-medium text-center">
+              ✅ تم إرسال الرسالة بنجاح!
             </div>
           )}
         </form>
 
-        {/* ✅ Contact Info + Map + Social */}
+        {/* ✅ معلومات التواصل */}
         <div className="flex flex-col justify-between space-y-6">
           <div className="space-y-4 text-sm text-gray-700">
-            <h3 className="text-xl font-bold text-[#d4af37] mb-2">
-              Contact Information
+            <h3 className="text-xl text-center font-bold text-[#2E86C1] mb-2">
+              معلومات التواصل
             </h3>
 
-            <p className="flex items-center gap-2">
-              <FaMapMarkerAlt className="text-[#d4af37]" />
-              50th Street, Zahraa El Maadi, Cairo, Egypt
+            <p className="flex items-left gap-2 justify-end">
+              <FaMapMarkerAlt className="text-[#F4D03F]" />
+              زهراء المعادي، القاهرة، مصر
             </p>
 
-            <p className="flex items-center gap-2">
-              <FaPhone className="text-[#d4af37]" />
-              +20 115 143 2229
+            <p className="flex items-center gap-2 justify-end">
+              <FaPhone className="text-[#F4D03F]" />
+              0115 143 2229
             </p>
 
-            <p className="flex items-center gap-2">
-              <FaEnvelope className="text-[#d4af37]" />
-              info@tabaq-restaurant.com
+            <p className="flex items-center gap-2 justify-end">
+              <FaEnvelope className="text-[#F4D03F]" />
+              info@bluebreeze-hotel.com
             </p>
           </div>
 
           <div className="w-full h-64 rounded-lg overflow-hidden shadow">
             <iframe
-              title="Restaurant Location"
+              title="موقع الفندق"
               className="w-full h-full"
               loading="lazy"
               allowFullScreen
@@ -158,20 +162,20 @@ export default function ContactSection() {
             ></iframe>
           </div>
 
-          <div className="flex justify-center gap-5 text-2xl mt-4">
-            <a href="https://facebook.com" target="_blank" className="hover:text-[#1877f2] text-gray-500">
+          <div className="flex justify-center gap-5 text-2xl mt-4 text-gray-600">
+            <a href="https://facebook.com" target="_blank" className="hover:text-[#1877f2]">
               <FaFacebook />
             </a>
-            <a href="https://instagram.com" target="_blank" className="hover:text-[#e1306c] text-gray-500">
+            <a href="https://instagram.com" target="_blank" className="hover:text-[#e1306c]">
               <FaInstagram />
             </a>
-            <a href="https://twitter.com" target="_blank" className="hover:text-[#1da1f2] text-gray-500">
+            <a href="https://twitter.com" target="_blank" className="hover:text-[#1da1f2]">
               <FaTwitter />
             </a>
-            <a href="https://linkedin.com" target="_blank" className="hover:text-[#0077b5] text-gray-500">
+            <a href="https://linkedin.com" target="_blank" className="hover:text-[#0077b5]">
               <FaLinkedin />
             </a>
-            <a href="https://wa.me/201151432229" target="_blank" className="hover:text-[#25D366] text-gray-500">
+            <a href="https://wa.me/201151432229" target="_blank" className="hover:text-[#25D366]">
               <FaWhatsapp />
             </a>
           </div>

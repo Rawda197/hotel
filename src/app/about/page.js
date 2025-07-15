@@ -1,12 +1,15 @@
-// app/about/page.jsx
-import AboutUs from "../../components/AboutUs";
+import AboutUsIntro from "../../components/AboutUsIntro";
+import WhyChooseUs from "../../components/WhyChooseUs";
+import Testimonials from "../../components/Testimonials";
+import TeamSection from "../../components/TeamSection";
 
-const AboutPage = () => {
+export default function AboutPage() {
   return (
-    <main className="pt-28">
-      <AboutUs />
+    <main>
+      <AboutUsIntro />
+      <WhyChooseUs />
+      <Testimonials />
+      <TeamSection />
     </main>
   );
-};
-
-export default AboutPage;
+}
